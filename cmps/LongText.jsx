@@ -1,15 +1,16 @@
-import React from 'react';
-
 const { useState } = React;
-export default function LongText({ text, maxLength = 100 }) {
+export default function LongText({ children, maxLength = 100 }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  if (text.length <= maxLength) return <p>{text}</p>;
+  if (children.length <= maxLength) return <p>{children}</p>;
   else {
     return (
       <p>
-        {isExpanded ? text : text.slice(0, maxLength)}
-        <a onClick={() => setIsExpanded(!isExpanded)}>
-          {isExpanded ? ' Show Less' : '...Show More'}
+        {isExpanded ? children : children.slice(0, maxLength) + '... '}
+        <a
+          className="blue-text"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          {isExpanded ? ' Less' : 'More'}
         </a>
       </p>
     );

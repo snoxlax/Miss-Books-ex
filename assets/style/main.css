@@ -22,6 +22,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -35,8 +36,16 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0.5em 0 0.5em;
+  margin: 0.1em 0 0.1em;
   font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
 }
 
 p {
@@ -191,6 +200,11 @@ input:focus {
   gap: 15px;
 }
 
+.header-title {
+  color: var(--clr2bg-light);
+  text-decoration: none;
+}
+
 a.active {
   color: rgb(241, 212, 241);
   font-weight: 600;
@@ -210,26 +224,176 @@ a.active {
 }
 
 .book-list-container {
+  padding: 2em;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   gap: 1em;
+  flex-wrap: wrap;
+}
+
+.add-book-btn {
+  margin: auto;
+  border: 1px solid var(--clr1);
+  padding: 0.5em;
+  border-radius: 4px;
+}
+
+.add-book-btn:hover {
+  background-color: var(--clr1);
+  color: white;
 }
 
 .book-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--clr1);
+  padding: 1em;
+  border-radius: 4px;
+  width: 20rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-card-img {
+  width: 400px;
+  height: 400px;
+  margin: auto;
   padding: 1em;
   border-radius: 4px;
 }
 
+/* Book Details */
+
+.book-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.book-details-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.book-details-img {
+  padding: 1em;
+  border-radius: 4px;
+}
+
+.book-details-description {
+  width: 400px;
+  margin: auto;
+  padding: 1em;
+  border-radius: 4px;
+}
+
+.on-sale-text {
+  color: white;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background-color: red;
+  border-radius: 4px;
+  padding: 0.2em 0.5em;
+  font-size: 0.8em;
+}
+.prev-next-book {
+  display: flex;
+  flex-direction: row;
+  gap: 10em;
+  width: fit-content;
+  margin: auto;
+}
+
+/* Book Filter */
+
 .book-filter {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-filter-form {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
+.tags-container {
+  display: flex;
+  gap: 0.5em;
+  padding: 1em 0.1em 1em 0.1em;
 }
 
 .search-input {
   width: 100%;
   border-radius: 4px;
+}
+
+/* Book Edit */
+.book-edit-container {
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+/* Utility */
+.tag {
+  background-color: cyan;
+  padding: 0.5em;
+  border-radius: 10px;
+  width: fit-content;
+  font-size: 0.8em;
+}
+
+.grey-box {
+  background-color: var(--gray1);
+  padding: 0.5em;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.fade-text {
+  opacity: 0.5;
+  font-weight: 400;
+  color: var(--gray2);
+}
+
+.italic-text {
+  font-style: italic;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.m-4 {
+  margin: 1em;
+}
+
+.m-4 {
+  padding: 1em;
+}
+
+.p-4 {
+  padding: 1em;
 }
 
 .mt-4 {
@@ -240,6 +404,19 @@ a.active {
   margin-bottom: 1em;
 }
 
+.red-text {
+  color: red;
+}
+
+.green-text {
+  color: green;
+}
+
+.blue-text {
+  color: blue;
+}
+
+/* Responsive */
 @media (max-width: 720px) {
   .app-header {
     color: var(--clr2bg-light);

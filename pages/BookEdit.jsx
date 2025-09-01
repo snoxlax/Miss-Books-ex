@@ -1,28 +1,88 @@
+import { bookService } from '../services/bookService.js';
+
+const { useState } = React;
+const { useNavigate } = ReactRouterDOM;
+
 export default function BookEdit() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    title: '',
+    price: 0,
+  });
+
+  function handleInputChange(e) {
+    const { name, value } = e.target;
+    let convertedValue = value;
+
+    switch (e.target.type) {
+      case 'range':
+      case 'number':
+        convertedValue = +e.target.value;
+        break;
+    }
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: convertedValue,
+    }));
+  }
+
   function onSaveBook(e) {
     e.preventDefault();
-    console.log('save book');
+    bookService
+      .addBook(formData.title, formData.price)
+      .then(() => navigate('/book'))
+      .catch((error) => {
+        console.error('Error saving book:', error);
+      });
   }
+
   return (
-    <form>
-      <input
-        type="text"
-        placeholder="Title"
-      />
-      <input
-        type="text"
-        placeholder="Author"
-      />
-      <input
-        type="text"
-        placeholder="Price"
-      />
-      <button
-        type="submit"
-        onClick={onSaveBook}
+    <div className="book-edit-container">
+      <h2>Add New Book</h2>
+      <form
+        onSubmit={onSaveBook}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 'fit-content',
+        }}
       >
-        Save
-      </button>
-    </form>
+        <div className="mt-4">
+          <label htmlFor="title">Book Title</label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            placeholder="Enter book title"
+            value={formData.title}
+            onChange={handleInputChange}
+            required
+            className="search-input"
+          />
+        </div>
+
+        <div className="mt-4">
+          <label htmlFor="price">Price</label>
+          <input
+            id="price"
+            name="price"
+            type="number"
+            placeholder="Enter price"
+            value={formData.price}
+            onChange={handleInputChange}
+            required
+            className="search-input"
+          />
+        </div>
+        <button
+          type="submit"
+          className="mt-4"
+          style={{ marginLeft: 'auto', display: 'block' }}
+        >
+          Save Book
+        </button>
+      </form>
+    </div>
   );
 }
