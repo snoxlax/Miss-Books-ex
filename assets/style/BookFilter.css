@@ -1,0 +1,52 @@
+/* Book Filter */
+.book-filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+
+.book-filter input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.book-filter-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: rgb(155, 0, 0);
+}
+
+.search-input {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.price-inputs {
+  display: flex;
+  width: 100%;
+  gap: 0.5em;
+  flex-direction: row;
+  margin-bottom: 1em;
+  align-items: center;
+}
+
+.price-inputs input {
+  flex: 1;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.price-separator {
+  font-weight: bold;
+  color: var(--gray2);
+  flex-shrink: 0;
+}

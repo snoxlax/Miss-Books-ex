@@ -1,40 +1,51 @@
 const { Link } = ReactRouterDOM;
-import LongText from './LongText.jsx';
+import { bookService } from '../services/bookService.js';
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, onRemoveBook }) {
+  const handleRemoveBook = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    bookService
+      .removeBook(book.id)
+      .then(() => {
+        if (onRemoveBook) {
+          onRemoveBook(book.id);
+        }
+      })
+      .then(() => showSuccessMsg('Book removed successfully'))
+      .catch((error) => {
+        console.error('Failed to remove book:', error);
+      });
+  };
+
   return (
-    <div
-      className="book-card"
-      style={{ position: 'relative' }}
-    >
-      <h1>{book.title}</h1>
-      <img
-        className="book-card-img"
-        src={book.thumbnail}
-        alt={book.title}
-        width={300}
-        height={400}
-        style={{ position: 'relative' }}
-      />
-      {book.listPrice.isOnSale && (
-        <p
-          className="on-sale-text"
-          style={{ top: '0.5rem', left: '0.5rem' }}
+    <div className="book-card">
+      <div className="book-card-img">
+        <img
+          src={book.thumbnail}
+          alt={book.title}
+        />
+        {book.listPrice.isOnSale && <p className="on-sale-text">On Sale</p>}
+        <button
+          className="remove-btn"
+          onClick={handleRemoveBook}
+          title="Remove book"
         >
-          On Sale
-        </p>
-      )}
-
-      <LongText>{book.description}</LongText>
-
-      <div className="flex-row">
-        <p className="mt-4">
-          {book.listPrice.amount} {book.listPrice.currencyCode}
-        </p>
-        <button>
-          <Link to={`/book/${book.id}`}>Details</Link>
+          ×
         </button>
       </div>
+      <h1>{book.title}</h1>
+      <p>by {book.authors.join(', ')}</p>
+      <p className="mt-4 mx-auto">
+        {book.listPrice.amount} {book.listPrice.currencyCode}
+      </p>
+      <Link
+        className="btn mx-auto"
+        to={`/book/${book.id}`}
+      >
+        Details
+      </Link>
     </div>
   );
 }

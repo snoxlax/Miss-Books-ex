@@ -1,0 +1,136 @@
+/* Utilities */
+.ml-auto {
+  margin-left: auto;
+}
+
+.display-block {
+  display: block;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Flex helpers */
+.flex {
+  display: flex;
+}
+
+.content-fit {
+  content: fit;
+}
+
+.flex.flex-column {
+  flex-direction: column;
+}
+
+.flex.justify-center {
+  justify-content: center;
+}
+
+.flex.justify-between {
+  justify-content: space-between;
+}
+
+.flex.align-center {
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.gap-1 {
+  gap: 0.5em;
+}
+
+/* Text helpers */
+.colored-text {
+  color: var(--clr1);
+}
+
+.red-text {
+  color: red;
+}
+
+.green-text {
+  color: green;
+}
+
+.blue-text {
+  color: blue;
+}
+
+.fade-text {
+  opacity: 0.5;
+  font-weight: 400;
+  color: var(--gray2);
+}
+
+.italic-text {
+  font-style: italic;
+}
+
+/* List helpers */
+.clean-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+/* Spacing */
+.m-4 {
+  margin: 1em;
+}
+
+.p-4 {
+  padding: 1em;
+}
+
+.mt-4 {
+  margin-top: 1em;
+}
+
+.mb-4 {
+  margin-bottom: 1em;
+}
+
+/* Utility classes */
+.tag {
+  background-color: cyan;
+  padding: 0.5em;
+  border-radius: 10px;
+  width: fit-content;
+  font-size: 0.8em;
+}
+
+.grey-box {
+  background-color: var(--gray1);
+  padding: 0.5em;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.tags-container {
+  display: flex;
+  gap: 0.5em;
+  padding: 1em 0.1em 1em 0.1em;
+}
+
+/* Debug */
+.debug * {
+  outline: 1px solid gold;
+}

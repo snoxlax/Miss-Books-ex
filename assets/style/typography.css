@@ -1,0 +1,56 @@
+/* Typography */
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.1em 0 0.1em;
+  font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+  cursor: pointer;
+}
+
+/* Font Awesome */
+.fa {
+  font-family: fa;
+}
+
+.fa.fa-facebook::before {
+  content: '\f39e';
+}
+
+.fa.fa-twitter::before {
+  content: '\f099';
+}
+
+.fa.fa-dribbble::before {
+  content: '\f17d';
+}
+
+.fa.fa-behance::before {
+  content: '\f1b4';
+}

@@ -1,4 +1,5 @@
 import { bookService } from '../services/bookService.js';
+import { showSuccessMsg } from '../services/event-bus.service.js';
 
 const { useState } = React;
 const { useNavigate } = ReactRouterDOM;
@@ -32,6 +33,7 @@ export default function BookEdit() {
     bookService
       .addBook(formData.title, formData.price)
       .then(() => navigate('/book'))
+      .then(() => showSuccessMsg('Book added successfully'))
       .catch((error) => {
         console.error('Error saving book:', error);
       });

@@ -5,7 +5,7 @@ export default function BookList({ books, onRemoveBook }) {
   return (
     <section className="book-list">
       <Link
-        className="add-book-btn"
+        className="btn"
         to="/book/edit"
       >
         Add Book

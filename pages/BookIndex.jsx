@@ -17,6 +17,12 @@ export default function BookIndex() {
       setBooks(books);
     });
   }, [filterBy]);
+  const handleRemoveBook = (bookId) => {
+    setBooks((prevBooks) => [
+      ...prevBooks.filter((book) => book.id !== bookId),
+    ]);
+  };
+
   return (
     <section className="book-index">
       <BookFilter
@@ -25,7 +31,7 @@ export default function BookIndex() {
       />
       <BookList
         books={books}
-        onRemoveBook={() => {}}
+        onRemoveBook={handleRemoveBook}
       />
     </section>
   );

@@ -1,5 +1,6 @@
 import { utilService } from './util.service.js';
 import { storageService } from './async-storage.service.js';
+import { showSuccessMsg } from './event-bus.service.js';
 
 const BOOK_KEY = 'miss-booksDB';
 
@@ -9,6 +10,10 @@ export const bookService = {
   getBooks,
   getBook,
   addBook,
+  addGoogleBook,
+  searchGoogleBooks,
+  addReview,
+  removeBook,
 };
 
 function getBooks(filterBy = {}) {
@@ -36,8 +41,6 @@ function getBook(id) {
 }
 
 function addBook(title, price) {
-  console.log(title);
-  console.log(price);
   const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion'];
   const book = {
     id: utilService.makeId(),
@@ -59,6 +62,102 @@ function addBook(title, price) {
     },
   };
   return storageService.post(BOOK_KEY, book);
+}
+
+async function searchGoogleBooks(searchTerm) {
+  if (!searchTerm) {
+    return;
+  }
+  searchTerm = encodeURIComponent(searchTerm);
+
+  const response = await fetch(
+    `https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchTerm}`
+  );
+  const data = await response.json();
+  const googleData = data.items;
+  const books = [];
+  googleData.forEach((book) => {
+    books.push({
+      id: book.id,
+      title: book.volumeInfo.title,
+      subtitle: book.volumeInfo.subtitle,
+      authors: book.volumeInfo.authors,
+      publishedDate: book.volumeInfo.publishedDate,
+      description: book.volumeInfo.description,
+      pageCount: book.volumeInfo.pageCount,
+      categories: book.volumeInfo.categories,
+      thumbnail: book.volumeInfo.imageLinks
+        ? book.volumeInfo.imageLinks.thumbnail
+        : undefined,
+      language: book.volumeInfo.language,
+    });
+  });
+  return books;
+}
+
+async function addGoogleBook(bookId) {
+  if (!bookId) {
+    return;
+  }
+
+  try {
+    const checkBook = await getBook(bookId);
+    if (checkBook) {
+      showErrorMsg('Book already exists');
+      return checkBook;
+    }
+  } catch (error) {
+    console.error('Error fetching book:', error);
+  }
+
+  const response = await fetch(
+    `https://www.googleapis.com/books/v1/volumes/${bookId}`
+  );
+  const data = await response.json();
+  const googleBook = data;
+
+  const book = {
+    id: googleBook.id,
+    title: googleBook.volumeInfo.title,
+    subtitle: googleBook.volumeInfo.subtitle,
+    authors: googleBook.volumeInfo.authors,
+    publishedDate: googleBook.volumeInfo.publishedDate,
+    description: googleBook.volumeInfo.description,
+    pageCount: googleBook.volumeInfo.pageCount,
+    categories: googleBook.volumeInfo.categories,
+    thumbnail: googleBook.volumeInfo.imageLinks
+      ? googleBook.volumeInfo.imageLinks.thumbnail
+      : undefined,
+    language: googleBook.volumeInfo.language,
+    listPrice: {
+      amount: Math.floor(Math.random() * 600) + 1,
+      currencyCode: 'EUR',
+      isOnSale: Math.random() > 0.7,
+    },
+  };
+
+  if (book.id) {
+    showSuccessMsg('Book added successfully');
+  }
+
+  return storageService.post(BOOK_KEY, book);
+}
+
+async function addReview(bookId, review) {
+  const book = await getBook(bookId);
+  const bookWithReview = {
+    ...book,
+    reviews: book.reviews ? [...book.reviews, review] : [review],
+    score: book.score
+      ? (book.score * book.reviews.length + review.rating) /
+        (book.reviews.length + 1)
+      : review.rating,
+  };
+  return storageService.put(BOOK_KEY, bookWithReview);
+}
+
+function removeBook(bookId) {
+  return storageService.remove(BOOK_KEY, bookId);
 }
 
 function _setNextPrevBookId(book) {

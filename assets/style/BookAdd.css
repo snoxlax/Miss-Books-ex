@@ -1,0 +1,91 @@
+.book-add-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas:
+    '. search .'
+    '. list .';
+  gap: 1em;
+  padding: 2em 1em;
+}
+
+.book-search {
+  grid-area: search;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+  margin: 1em;
+  gap: 1rem;
+}
+
+.book-search h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.book-search input {
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid #e1e8ed;
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-add-list {
+  grid-area: list;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.book-add-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1em;
+}
+
+.book-add-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.book-add-info h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.book-add-info p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin: 0;
+  color: #5a6c7d;
+}
+
+.book-add-img {
+  width: 10rem;
+  height: 15rem;
+}
+
+.no-books {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: #5a6c7d;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}

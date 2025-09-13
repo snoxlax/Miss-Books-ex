@@ -5,6 +5,9 @@ import BookIndex from './pages/BookIndex.jsx';
 import BookDetails from './pages/BookDetails.jsx';
 import NotFound from './pages/NotFound.jsx';
 import BookEdit from './pages/BookEdit.jsx';
+import AppFooter from './cmps/AppFooter.jsx';
+import UserMsg from './cmps/UserMsg.jsx';
+import BookAdd from './pages/BookAdd.jsx';
 
 const Router = ReactRouterDOM.HashRouter;
 const { Routes, Route, Navigate } = ReactRouterDOM;
@@ -12,7 +15,7 @@ const { Routes, Route, Navigate } = ReactRouterDOM;
 export function RootCmp() {
   return (
     <Router>
-      <section className="app main-layout">
+      <section className="app">
         <AppHeader />
         <main>
           <Routes>
@@ -33,6 +36,10 @@ export function RootCmp() {
               element={<BookIndex />}
             />
             <Route
+              path="/add"
+              element={<BookAdd />}
+            />
+            <Route
               path="/book/:id"
               element={<BookDetails />}
             />
@@ -46,6 +53,8 @@ export function RootCmp() {
             />
           </Routes>
         </main>
+        <AppFooter />
+        <UserMsg />
       </section>
     </Router>
   );
