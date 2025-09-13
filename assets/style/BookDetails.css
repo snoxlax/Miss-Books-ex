@@ -208,12 +208,10 @@
 .no-reviews {
   color: #0c3032;
   font-style: italic;
-  /* break text into 2 lines */
   text-align: center;
   grid-column: span 3;
   background-color: #ebf5ff;
   padding: 2rem;
-
   border-radius: 12px;
 }
 
@@ -255,11 +253,11 @@
 
 .star-icon.selected svg,
 .star-icon.hovered svg {
-  color: #eab308; /* yellow-500 */
+  color: #eab308;
 }
 
 .star-icon:not(.selected):not(.hovered) svg {
-  color: #d1d5db; /* gray-300 */
+  color: #d1d5db;
 }
 
 .star-rating-container {
@@ -272,7 +270,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: #1f2937; /* gray-800 */
+  color: #1f2937;
 }
 
 .star-rating-stars {
@@ -282,7 +280,7 @@
 }
 
 .star-rating-text {
-  color: #4b5563; /* gray-600 */
+  color: #4b5563;
   font-weight: 500;
   height: 1.5rem;
 }
