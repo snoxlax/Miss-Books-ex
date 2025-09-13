@@ -10,7 +10,6 @@ export default function UserMsg() {
     let msgTimeout;
 
     eventBusService.on('show-user-msg', (msg) => {
-      // Clear any existing timeouts
       clearTimeout(visibleTimeout);
       clearTimeout(msgTimeout);
 

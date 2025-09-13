@@ -20,19 +20,17 @@ export default function LongText({ children, maxLength = 100 }) {
 }
 
 function parseDescription(description) {
-  // Replace <br> and <br/> with line breaks
   const withLineBreaks = description.replace(/<br\s*\/?>/gi, '\n');
 
-  // Split into text + tags
   const parts = withLineBreaks.split(/(<\/?[^>]+>)/g);
 
   return parts.map((part, i) => {
-    if (/^<b>$/i.test(part)) return <strong key={i}></strong>; // <b>
-    if (/^<\/b>$/i.test(part)) return null; // </b>
-    if (/^<i>$/i.test(part)) return <em key={i}></em>; // <i>
-    if (/^<\/i>$/i.test(part)) return null; // </i>
-    if (part === '\n') return <br key={i} />; // line breaks
+    if (/^<b>$/i.test(part)) return <strong key={i}></strong>;
+    if (/^<\/b>$/i.test(part)) return null;
+    if (/^<i>$/i.test(part)) return <em key={i}></em>;
+    if (/^<\/i>$/i.test(part)) return null;
+    if (part === '\n') return <br key={i} />;
 
-    return part; // plain text
+    return part;
   });
 }
