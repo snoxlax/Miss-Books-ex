@@ -124,7 +124,7 @@ export default function BookDetails() {
           )}
         </div>
         <div className="reviews-container">
-          {book.reviews && book.reviews.length > 0 ? (
+          {!!book.reviews ? (
             book.reviews.map((review, index) => (
               <Review
                 key={`${review.name}-${index}`}

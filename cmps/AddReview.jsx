@@ -5,7 +5,7 @@ export default function AddReview({ book, onReviewAdded }) {
   const [formData, setFormData] = useState({
     name: '',
     rating: 0,
-    readAt: '',
+    readAt: new Date().toISOString().slice(0, 10),
   });
 
   function handleInputChange(e) {
